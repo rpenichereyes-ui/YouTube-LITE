@@ -2,87 +2,85 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PS Vita/PSP YouTube Lite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>YT Lite</title>
     <style type="text/css">
-        body {
-            background-color: #000;
-            color: #ccc;
-            font-family: sans-serif;
-            margin: 0;
-            padding: 10px;
-        }
-        .header {
-            background-color: #222;
-            padding: 10px;
-            text-align: center;
-            border-bottom: 2px solid #f00;
-        }
-        .search-box {
-            margin: 20px 0;
-            text-align: center;
-        }
-        input[type="text"] {
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-            padding: 5px;
-            width: 70%;
-        }
-        .video-card {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            margin-bottom: 15px;
-            padding: 10px;
-        }
-        .video-title {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-        .btn {
-            background: #f00;
-            color: #fff;
-            padding: 5px 10px;
-            text-decoration: none;
-            font-size: 12px;
-            display: inline-block;
-        }
-        .footer {
-            font-size: 10px;
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-        }
+        /* Estilos Base de Alta Velocidad */
+        body { margin: 0; padding: 0; background-color: #f0f0f0; font-family: Arial, sans-serif; text-align: center; }
+        .main { padding: 15px 10px 70px 10px; }
+        
+        /* Contenedor de Logo Optimizado */
+        .lg-c { margin: 10px 0 20px 0; height: 45px; }
+        .lg { width: 140px; height: auto; border: 0; }
+
+        /* Buscador de un solo toque */
+        .s-in { width: 85%; padding: 10px; border: 1px solid #999; font-size: 16px; background: #fff; border-radius: 3px; }
+        .s-bt { width: 88%; margin-top: 12px; padding: 12px; background: #e00; color: #fff; border: 0; font-weight: bold; border-radius: 3px; cursor: pointer; }
+
+        /* Barra de Navegación (Máxima Compatibilidad) */
+        .nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 55px; border-top: 1px solid #aaa; z-index: 10;
+               background: #ddd; background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc));
+               filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc'); }
+        .tb { width: 100%; height: 55px; border-collapse: collapse; }
+        .td { width: 25%; text-align: center; vertical-align: middle; }
+        
+        /* Lupa Activa Roja */
+        .act { background: #c00; background: -webkit-gradient(linear, left top, left bottom, from(#f44), to(#a00));
+               filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff4444', endColorstr='#aa0000');
+               border-top: 2px solid #f66; }
+
+        /* Iconos CSS (Sin imágenes, carga 0ms) */
+        .i-h { display: inline-block; width: 14px; height: 14px; background: #666; position: relative; transform: rotate(-45deg); -webkit-transform: rotate(-45deg); }
+        .i-h:before, .i-h:after { content: ""; width: 14px; height: 14px; background: #666; border-radius: 50%; position: absolute; }
+        .i-h:before { top: -7px; left: 0; } .i-h:after { left: 7px; top: 0; }
+        
+        .i-c { display: inline-block; width: 16px; height: 16px; border: 2px solid #666; border-radius: 50%; position: relative; }
+        .i-c:after { content: ""; position: absolute; width: 2px; height: 6px; background: #666; left: 7px; top: 2px; }
+        .i-c:before { content: ""; position: absolute; width: 4px; height: 2px; background: #666; left: 7px; top: 7px; }
+
+        .i-s { display: inline-block; width: 14px; height: 14px; border: 2px solid #fff; border-radius: 50%; position: relative; }
+        .i-s:after { content: ""; position: absolute; width: 2px; height: 7px; background: #fff; bottom: -6px; right: -4px; transform: rotate(-45deg); -webkit-transform: rotate(-45deg); }
+
+        .i-st { color: #666; font-size: 22px; line-height: 1; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <strong>YT LITE PARA PS PORTABLE</strong>
-    </div>
-
-    <div class="search-box">
-        <form action="https://yewtu.be/search" method="get">
-            <input type="text" name="q" placeholder="Buscar video..." />
-            <input type="submit" value="Ir" />
+    <div class="main">
+        <div class="lg-c">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Logo_of_YouTube_%282011-2013%29.svg/1280px-Logo_of_YouTube_%282011-2013%29.svg.png" alt="YT" class="lg" />
+        </div>
+        
+        <form action="https://m.youtube.com/results" method="get" onsubmit="return fastSearch()">
+            <input type="text" id="q" name="search_query" class="s-in" placeholder="Buscar..." maxlength="100" />
+            <br />
+            <input type="submit" value="BUSCAR" class="s-bt" />
         </form>
     </div>
 
-    <div class="video-card">
-        <a href="#" class="video-title">Video de Ejemplo (Tendencias)</a>
-        <p style="font-size: 11px;">Para reproducir en PS Vita, usa instancias de Invidious que permitan descarga directa o visualización en MP4.</p>
-        <a href="https://yewtu.be/feed/popular" class="btn">VER POPULARES</a>
+    <div class="nav">
+        <table class="tb">
+            <tr>
+                <td class="td"><a href="https://m.youtube.com/feed/library"><span class="i-h"></span></a></td>
+                <td class="td"><a href="https://m.youtube.com/feed/history"><span class="i-c"></span></a></td>
+                <td class="td act"><a href="#"><span class="i-s"></span></a></td>
+                <td class="td"><a href="https://m.youtube.com" style="text-decoration:none;"><span class="i-st">&#9733;</span></a></td>
+            </tr>
+        </table>
     </div>
 
-    <hr />
-
-    <div class="footer">
-        Compatible con NetFront Browser (PSP) y WebKit (PS Vita).<br />
-        Sin JavaScript activo.
-    </div>
+    <script type="text/javascript">
+        // Optimización de respuesta inmediata
+        function fastSearch() {
+            var query = document.getElementById('q').value;
+            if (query.length < 1) return false;
+            // Sanitización veloz
+            query = query.replace(/[<>\"\'\&]/g, "");
+            // Redirección directa sin esperas
+            window.location.href = "https://m.youtube.com/results?search_query=" + encodeURIComponent(query);
+            return false;
+        }
+    </script>
 
 </body>
 </html>
